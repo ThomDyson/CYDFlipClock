@@ -1,5 +1,5 @@
 # Flip Clock on a Cheap Yellow Display (CYD)
-This program uses a Cheap Yellow Display to show a classic flip clock.  The design is based on Jeremy Cook's [Simulated Flip Clock](https://github.com/funnypolynomial/FlipClock), but I've updated the code to use modern libraries and a CYD.
+This program uses a Cheap Yellow Display to show a classic flip clock.  The design is based on Jeremy Cook's [Simulated Flip Clock](https://github.com/funnypolynomial/FlipClock), but I've updated the code to use modern libraries and a CYD. **Note:** Touch the screen to force a flip.
 
 ![Animation](./assets/CYDFlipClock1.gif)
 
