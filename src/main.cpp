@@ -3,7 +3,7 @@
 #include <WiFi.h>
 #include <TFT_eSPI.h>
 #include <XPT2046_Touchscreen.h>
-#include <secrets.h>
+#include <secrets.h>  //put your wifi data here
 #include <roboto_64.h>
 
 // Touchscreen pins
@@ -593,7 +593,7 @@ void setup() {
   tft.drawCentreString( "Connecting to wifi.", centerX, 75, 4 );
   // Timeout variables
   unsigned long wifiStartTime     = millis();
-  const unsigned long wifiTimeout = 5000; // 30 seconds
+  const unsigned long wifiTimeout = 20000; // 20 seconds
   // Wait for connection
   Serial.println( ssid );
   Serial.println( WiFipassword );
