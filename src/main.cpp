@@ -3,9 +3,19 @@
 #include <WiFi.h>
 #include <TFT_eSPI.h>
 #include <XPT2046_Touchscreen.h>
-#include <secrets.h>  //put your wifi data here
 #include <roboto_64.h>
 
+// *****************
+// create secrets.h  in the include folder and put your wifi data there
+//       OR
+// comment out this include and uncomment the lines for ssid and WiFipassword
+// *****************
+
+#include <secrets.h>
+// const char *ssid         = "My Home Wifi Name";               // Change this to your WiFi SSID
+// const char *WiFipassword = "MySuperSecretPassword"; // Change this to your WiFi password
+
+const bool MilTime = false; // 24 hour clock, AKA military time
 // Touchscreen pins
 #define XPT2046_IRQ 36  // T_IRQ
 #define XPT2046_MOSI 32 // T_DIN
@@ -481,11 +491,21 @@ void update_clock( bool force_update ) {
   struct tm timeInfo;
   localtime_r( &now, &timeInfo ); // Convert time_t to struct tm
 
-  int nowDOWNumber   = timeInfo.tm_wday;      // Get day of week (0 = Sunday, 6 = Saturday)
-  int nowH1          = timeInfo.tm_hour / 10; // First hour digit
-  int nowH2          = timeInfo.tm_hour % 10; // Second hour digit
-  int nowM1          = timeInfo.tm_min / 10;  // First minute digit
-  int nowM2          = timeInfo.tm_min % 10;  // Second minute digit
+  int nowDOWNumber = timeInfo.tm_wday; // Get day of week (0 = Sunday, 6 = Saturday)
+  int hours        = timeInfo.tm_hour;
+  int nowH1;
+  int nowH2;
+  if ( !MilTime && ( hours > 12 ) ) {
+    hours = hours - 12;
+    nowH1 = hours / 10; // First hour digit
+    nowH2 = hours % 10; // Second hour digit
+  } else {
+    nowH1 = hours / 10; // First hour digit
+    nowH2 = hours % 10; // Second hour digit
+  }
+
+  int nowM1          = timeInfo.tm_min / 10; // First minute digit
+  int nowM2          = timeInfo.tm_min % 10; // Second minute digit
   int nowMonthNumber = timeInfo.tm_mon;
   int nowDate1       = timeInfo.tm_mday / 10;
   int nowDate2       = timeInfo.tm_mday % 10;
