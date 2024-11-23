@@ -31,6 +31,8 @@ to hold your WiFi credentials. The other option is to add these to the top of th
 
 To use a 24 hour display, set this line `const bool MilTime = true;` to true. To use a 12 hour display, set MilTime to false, `const bool MilTime = false;`
 
+To set the clock to your time zone, change the line that says `const long  gmtOffset_sec = -5 ;` to be the value for your location. This is the difference between your time and UTC.  -5 is Eastern Time, aka New York time. 0 is London, etc.
+
 Not all CYDs are the same.  For my CYD (a variant of the original), I had to add  `-DTFT_INVERSION_ON=1` to platformio.ini (or the equivalent  ` #define TFT_INVERSION_ON` to the User_Setup.h). You may need to remove that to get your colors correct.
 
 In the platformio.ini, `upload_speed = 961200` is a bit aggressive. You may need to reduce this if your CYD/cable/PC are in a mood.

@@ -10,10 +10,15 @@
 //       OR
 // comment out this include and uncomment the lines for ssid and WiFipassword
 // *****************
-
 #include <secrets.h>
 // const char *ssid         = "My Home Wifi Name";               // Change this to your WiFi SSID
 // const char *WiFipassword = "MySuperSecretPassword"; // Change this to your WiFi password
+
+// Timezone and NTP servers
+const char* ntpServer = "pool.ntp.org";
+const long  gmtOffset_hours = -5 ;  // GMT offset in hours (e.g., -5 for EST) CHANGE AS NEEDED
+const int   daylightOffset_sec = 3600; // Daylight savings offset in seconds (1 hour)
+
 
 const bool MilTime = false; // 24 hour clock, AKA military time
 // Touchscreen pins
@@ -634,7 +639,7 @@ void setup() {
     please_wait();
     Serial.println( "" );
     // Set up time via NTP
-    configTime( -5 * 3600, 3600, "pool.ntp.org" );
+    configTime( gmtOffset_hours * 3600, daylightOffset_sec, ntpServer );
     firstpass = true;
   } else {
     Serial.println( "\nWi-Fi Connection Failed." );
