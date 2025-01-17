@@ -618,10 +618,11 @@ void setup() {
   tft.drawCentreString( "Connecting to wifi.", centerX, 75, 4 );
   // Timeout variables
   unsigned long wifiStartTime     = millis();
-  const unsigned long wifiTimeout = 20000; // 20 seconds
+  const unsigned long wifiTimeout = 40000; // 20 seconds
   // Wait for connection
   Serial.println( ssid );
   Serial.println( WiFipassword );
+  WiFi.setMinSecurity(WIFI_AUTH_WPA2_PSK);
   WiFi.begin( ssid, WiFipassword );
 
   while ( WiFi.status() != WL_CONNECTED && ( millis() - wifiStartTime ) < wifiTimeout ) {
